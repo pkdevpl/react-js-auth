@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+import App from './components/App';
+import {BrowserRouter} from 'react-router-dom';
+import LoadingProvider from './contexts/LoadingContext';
+import AuthProvider from './contexts/AuthContext';
 
 ReactDOM.render(
-    <h1>Hello Index</h1>,
+    <BrowserRouter>
+        <LoadingProvider>
+            <AuthProvider>
+                <App />
+            </AuthProvider>
+        </LoadingProvider>
+    </BrowserRouter>,
     document.getElementById('root')
 );
