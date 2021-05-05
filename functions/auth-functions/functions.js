@@ -5,13 +5,15 @@ const nodemailer = 	require("nodemailer");
 const confirmEmailTemplate = 	require('./templates/email-confirm');
 const resetPasswordTemplate = 	require('./templates/email-reset-pass');
 
+const smtp_config = require('../config');
+
 const noreplyTransporter = nodemailer.createTransport({
-	host:'your-host', 
-	port:587, 
-	secure:false, 
+	host: smtp_config.host, 
+	port: smtp_config.port, 
+	secure: false, 
 	auth:{
-		user:'your-user', 
-		pass:'your-pass'
+		user: smtp_config.username, 
+		pass: smtp_config.password
 	}
 });
 
@@ -30,7 +32,7 @@ exports.sendResetLink = functions.https.onCall( async (data, context) => {
 	}
 
     let resetPasswordLink = await admin.auth().generatePasswordResetLink(user.email);
-	resetPasswordLink = 'http://localhost:3000/action?' + resetPasswordLink.split('?')[1];
+	// resetPasswordLink = 'http://localhost:3000/action?' + resetPasswordLink.split('?')[1];
     
 	try {
         await noreplyTransporter.sendMail({
@@ -60,7 +62,7 @@ exports.sendConfirmationLink = functions.https.onCall( async (data, context) => 
 	}
 
     let verificationLink = await admin.auth().generateEmailVerificationLink(user.email);
-	verificationLink = 'http://localhost:3000/action?' + verificationLink.split('?')[1];
+	// verificationLink = 'http://localhost:3000/action?' + verificationLink.split('?')[1];
 
 	try {
 		await noreplyTransporter.sendMail({

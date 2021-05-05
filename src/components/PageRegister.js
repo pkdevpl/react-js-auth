@@ -69,9 +69,9 @@ const PageRegister = () => {
             formRef.current.reset();
             history.push("/");
         } catch(err) {
-            setIsLoading(false);
             setAlertMessage(err.message);
             setAlertType('danger');
+            setIsLoading(false);
         }
     }
 

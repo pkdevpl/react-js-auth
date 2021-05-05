@@ -9,8 +9,13 @@ import 'firebase/storage';
 // Firebase setup
 
 const firebaseConfig = {
-    // YOUR FIREBASE CONFIG GOES HERE
-  };
+    apiKey:             process.env.REACT_APP_FIREBASE_APIKEY,
+    authDomain:         process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId:          process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket:      process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    messagingSenderId:  process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+    appId:              process.env.REACT_APP_FIREBASE_APPID
+};
 
 const app = firebase.initializeApp(firebaseConfig);
 
@@ -18,6 +23,14 @@ const db =          app.firestore();
 const auth =        app.auth();
 const functions =   app.functions();
 const storage =     app.storage();
+
+const useEmulators = false;
+
+if(process.env.NODE_ENV === "development" && useEmulators) {
+    db.useEmulator('http://localhost:8081');
+    auth.useEmulator('http://localhost:9099',{ disableWarnings: true });
+    functions.useEmulator("localhost", 5001);
+}
 
 // Context setup
 

@@ -16,6 +16,10 @@ const PageLogin = () => {
     const {setIsLoading, setLoadingContent} = useLoading();
     const {resetPassword} = useAuth();
 
+    useEffect(()=>{
+        setIsLoading(false);
+    },[]);
+
     const handleReset = async event => {
         event.preventDefault();
         event.stopPropagation();
