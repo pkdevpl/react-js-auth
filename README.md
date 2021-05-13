@@ -1,8 +1,12 @@
 # React JS Auth Boilerplate
 
-This repo is a starting point for apps requiring Authentication. It can be customized with react-bootstrap.
+## About
 
-See working example: https://pkdev-react-js-auth.web.app
+This repo is a starting point for apps requiring authentication in React JS. It uses functional components and can be customized with react-bootstrap and sass.
+
+See working example here: https://pkdev-react-js-auth.web.app
+
+You can use temporary e-mail provider like [temp-mail.org](https://temp-mail.org) if you wish not to provide your working e-mail address.
 
 ## Screenshots
 
